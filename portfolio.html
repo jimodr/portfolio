@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio BTS SIO SISR — Infrastructure & Cybersécurité</title>
+  <meta name="description" content="Portfolio premium d'un étudiant BTS SIO SISR spécialisé en infrastructure, administration système, cybersécurité et projets réseau." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Art direction: Infrastructure console / monitoring / SOC
+       Palette: neutres bleutés + accent cyan mesuré
+       Typography: Inter + JetBrains Mono
+       Density: balanced, premium, technical */
+
+    :root,
+    [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl: clamp(2.5rem, 1rem + 4vw, 4.5rem);
+
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+      --space-32: 8rem;
+
+      --color-bg: #f4f7fb;
+      --color-surface: #ffffff;
+      --color-surface-2: #f8fbff;
+      --color-surface-offset: #edf3fa;
+      --color-surface-dynamic: #e3ebf5;
+      --color-border: rgba(15, 23, 42, 0.10);
+      --color-divider: rgba(15, 23, 42, 0.08);
+
+      --color-text: #0f172a;
+      --color-text-muted: #475569;
+      --color-text-faint: #94a3b8;
+      --color-text-inverse: #f8fafc;
+
+      --color-primary: #00a88a;
+      --color-primary-hover: #008d74;
+      --color-primary-active: #006f5c;
+      --color-primary-highlight: rgba(0, 168, 138, 0.12);
+
+      --color-blue: #3978ff;
+      --color-blue-hover: #245fe0;
+      --color-blue-highlight: rgba(57, 120, 255, 0.12);
+
+      --color-orange: #f97316;
+      --color-success: #16a34a;
+
+      --radius-sm: 0.375rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 18px 50px rgba(15, 23, 42, 0.12);
+
+      --content-narrow: 720px;
+      --content-default: 1100px;
+      --content-wide: 1280px;
+
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #0b0f17;
+      --color-surface: #111827;
+      --color-surface-2: #162033;
+      --color-surface-offset: #0f1725;
+      --color-surface-dynamic: #1b2940;
+      --color-border: rgba(148, 163, 184, 0.16);
+      --color-divider: rgba(148, 163, 184, 0.10);
+
+      --color-text: #e5eef8;
+      --color-text-muted: #94a3b8;
+      --color-text-faint: #64748b;
+      --color-text-inverse: #081018;
+
+      --color-primary: #1dd3b0;
+      --color-primary-hover: #18b69a;
+      --color-primary-active: #119079;
+      --color-primary-highlight: rgba(29, 211, 176, 0.12);
+
+      --color-blue: #4f8cff;
+      --color-blue-hover: #3d78e6;
+      --color-blue-highlight: rgba(79, 140, 255, 0.14);
+
+      --color-orange: #ff8a4c;
+      --color-success: #22c55e;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.24);
+      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.26);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --color-bg: #0b0f17;
+        --color-surface: #111827;
+        --color-surface-2: #162033;
+        --color-surface-offset: #0f1725;
+        --color-surface-dynamic: #1b2940;
+        --color-border: rgba(148, 163, 184, 0.16);
+        --color-divider: rgba(148, 163, 184, 0.10);
+
+        --color-text: #e5eef8;
+        --color-text-muted: #94a3b8;
+        --color-text-faint: #64748b;
+        --color-text-inverse: #081018;
+
+        --color-primary: #1dd3b0;
+        --color-primary-hover: #18b69a;
+        --color-primary-active: #119079;
+        --color-primary-highlight: rgba(29, 211, 176, 0.12);
+
+        --color-blue: #4f8cff;
+        --color-blue-hover: #3d78e6;
+        --color-blue-highlight: rgba(79, 140, 255, 0.14);
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-padding-top: 6rem;
+    }
+
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.65;
+      color: var(--color-text);
+      background:
+        radial-gradient(circle at top right, rgba(79, 140, 255, 0.10), transparent 20%),
+        radial-gradient(circle at top left, rgba(29, 211, 176, 0.08), transparent 16%),
+        var(--color-bg);
+      overflow-x: hidden;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition:
+        color var(--transition-interactive),
+        background var(--transition-interactive),
+        border-color var(--transition-interactive),
+        box-shadow var(--transition-interactive),
+        transform var(--transition-interactive);
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    ::selection {
+      background: var(--color-primary-highlight);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: var(--space-4);
+      z-index: 200;
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+    }
+
+    .skip-link:focus {
+      top: var(--space-4);
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--content-default));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding-block: clamp(var(--space-12), 9vw, var(--space-24));
+      position: relative;
+    }
+
+    .section-head {
+      display: grid;
+      gap: var(--space-3);
+      margin-bottom: var(--space-10);
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      width: fit-content;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface-2) 85%, transparent);
+      color: var(--color-primary);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 14px var(--color-primary);
+    }
+
+    h1, h2, h3, h4 {
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+
+    h1 {
+      font-size: var(--text-3xl);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      max-width: 72ch;
+      color: var(--color-text-muted);
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-primary);
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    @media (min-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: start;
+      }
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 0.9rem 1.2rem;
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      border: 1px solid transparent;
+      transform: translateY(0);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 68%, white));
+      color: var(--color-text-inverse);
+      box-shadow: 0 12px 30px rgba(0, 168, 138, 0.20);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--color-primary-hover), var(--color-primary));
+    }
+
+    .btn-secondary {
+      background: var(--color-surface);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-ghost {
+      color: var(--color-text-muted);
+      border-color: var(--color-border);
+      background: transparent;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--color-bg) 78%, transparent);
+      border-bottom: 1px solid var(--color-divider);
+    }
+
+    .progress-bar {
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-blue));
+      z-index: 2;
+    }
+
+    .nav-wrap {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.85rem;
+      display: grid;
+      place-items: center;
+      color: var(--color-primary);
+      background:
+        linear-gradient(135deg, var(--color-primary-highlight), color-mix(in srgb, var(--color-blue-highlight) 65%, transparent));
+      border: 1px solid var(--color-border);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+    }
+
+    .brand-mark svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      stroke-width: 1.8;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-text strong {
+      font-size: 1rem;
+    }
+
+    .brand-text span {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .nav-toggle,
+    .theme-toggle {
+      min-width: 44px;
+      min-height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .nav-toggle {
+      display: inline-grid;
+    }
+
+    .nav-menu {
+      position: fixed;
+      inset: 74px 1rem auto 1rem;
+      display: grid;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface) 95%, transparent);
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity var(--transition-interactive), transform var(--transition-interactive);
+    }
+
+    .nav-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .nav-menu a {
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-md);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      background: var(--color-primary-highlight);
+      color: var(--color-primary);
+    }
+
+    @media (min-width: 980px) {
+      .nav-toggle {
+        display: none;
+      }
+
+      .nav-menu {
+        position: static;
+        inset: auto;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
+        padding: 0;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .nav-menu a {
+        padding: 0.75rem 0.95rem;
+      }
+    }
+
+    .hero {
+      padding-top: clamp(var(--space-12), 8vw, var(--space-20));
+      min-height: calc(100dvh - 74px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-layout {
+      display: grid;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-layout {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .hero-copy p {
+      font-size: var(--text-lg);
+      max-width: 60ch;
+    }
+
+    .hero-title-accent {
+      display: block;
+      color: var(--color-primary);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-2);
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.7rem 0.95rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+      color: var(--color-text-muted);
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+    }
+
+    .meta-pill .dot {
+      width: 0.48rem;
+      height: 0.48rem;
+      border-radius: 50%;
+      background: var(--color-success);
+      box-shadow: 0 0 10px var(--color-success);
+    }
+
+    .hero-panel {
+      position: relative;
+    }
+
+    .console {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      border: 1px solid var(--color-border);
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--color-surface-2) 96%, transparent), color-mix(in srgb, var(--color-surface) 96%, transparent));
+      box-shadow: var(--shadow-lg);
+    }
+
+    .console-topbar {
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-bottom: 1px solid var(--color-divider);
+      background: color-mix(in srgb, var(--color-surface-offset) 92%, transparent);
+    }
+
+    .console-topbar span {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: var(--color-text-faint);
+    }
+
+    .console-topbar span:nth-child(1) { background: #ff5f57; }
+    .console-topbar span:nth-child(2) { background: #ffbd2e; }
+    .console-topbar span:nth-child(3) { background: #28c840; }
+
+    .console-body {
+      padding: var(--space-6);
+      min-height: 460px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .console-line {
+      display: flex;
+      gap: var(--space-3);
+      align-items: flex-start;
+    }
+
+    .console-line .prompt {
+      color: var(--color-primary);
+      white-space: nowrap;
+    }
+
+    .console-line .text strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .stats-grid {
+      display: grid;
+      gap: var(--space-4);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: var(--space-4);
+    }
+
+    .stat-card {
+      padding: var(--space-4);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface-offset) 86%, transparent);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: var(--text-xl);
+      color: var(--color-text);
+      letter-spacing: -0.03em;
+    }
+
+    .stat-card span {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .card,
+    .info-card,
+    .project-card,
+    .timeline-card,
+    .tech-card,
+    .contact-card {
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+    }
+
+    .info-card {
+      padding: var(--space-8);
+    }
+
+    .profile-stack {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .bullet-list {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    .bullet-list li {
+      display: flex;
+      gap: var(--space-3);
+      color: var(--color-text-muted);
+    }
+
+    .bullet-list li::before {
+      content: "";
+      width: 0.7rem;
+      height: 0.7rem;
+      margin-top: 0.45rem;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-blue));
+      box-shadow: 0 0 12px rgba(29, 211, 176, 0.25);
+    }
+
+    .mini-panels {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .mini-card {
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface-2) 90%, transparent), color-mix(in srgb, var(--color-surface-offset) 84%, transparent));
+    }
+
+    .mini-card h3 {
+      margin-bottom: var(--space-2);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: linear-gradient(180deg, var(--color-primary), transparent);
+      opacity: 0.65;
+    }
+
+    .timeline-card {
+      position: relative;
+      padding: var(--space-6);
+      padding-left: calc(var(--space-6) + 1rem);
+      margin-left: 1.4rem;
+    }
+
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      left: -1.05rem;
+      top: 2rem;
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 50%;
+      background: var(--color-primary);
+      border: 3px solid var(--color-bg);
+      box-shadow: 0 0 18px rgba(29, 211, 176, 0.35);
+    }
+
+    .timeline-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2) var(--space-4);
+      align-items: center;
+      margin-bottom: var(--space-3);
+    }
+
+    .date-chip,
+    .tag,
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-family: var(--font-mono);
+      border: 1px solid var(--color-border);
+    }
+
+    .date-chip {
+      color: var(--color-primary);
+      background: var(--color-primary-highlight);
+    }
+
+    .tag {
+      color: var(--color-text-muted);
+      background: color-mix(in srgb, var(--color-surface-offset) 86%, transparent);
+    }
+
+    .skill-layout {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 1000px) {
+      .skill-layout {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .tech-card {
+      padding: var(--space-6);
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .skills-list {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .skill-row {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .skill-bar {
+      position: relative;
+      height: 0.7rem;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      background: color-mix(in srgb, var(--color-surface-offset) 92%, transparent);
+      border: 1px solid var(--color-border);
+    }
+
+    .skill-bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-blue));
+      transition: width 900ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .badge-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0.65rem 0.95rem;
+      border-radius: var(--radius-full);
+      background: color-mix(in srgb, var(--color-surface-offset) 88%, transparent);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      font-weight: 500;
+    }
+
+    .projects-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+
+    .filter-btn {
+      background: var(--color-surface);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      min-height: 42px;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--color-primary-highlight);
+      color: var(--color-primary);
+      border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-border));
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    @media (min-width: 900px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      transition: transform var(--transition-interactive), box-shadow var(--transition-interactive), border-color var(--transition-interactive);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: color-mix(in srgb, var(--color-primary) 35%, var(--color-border));
+    }
+
+    .project-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+
+    .project-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 1rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--color-border);
+      background: linear-gradient(135deg, var(--color-primary-highlight), var(--color-blue-highlight));
+      color: var(--color-primary);
+      flex: 0 0 auto;
+    }
+
+    .project-icon svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      stroke-width: 1.8;
+    }
+
+    .project-card p {
+      max-width: none;
+    }
+
+    .project-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .tiny-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+      color: var(--color-text-muted);
+      background: color-mix(in srgb, var(--color-surface-offset) 90%, transparent);
+      border: 1px solid var(--color-border);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--color-primary);
+      font-weight: 700;
+      font-size: var(--text-sm);
+    }
+
+    .watch-grid,
+    .cert-grid,
+    .contact-grid,
+    .footer-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    @media (min-width: 900px) {
+      .watch-grid,
+      .cert-grid,
+      .contact-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .watch-card,
+    .cert-card,
+    .contact-card {
+      padding: var(--space-6);
+    }
+
+    .watch-card,
+    .cert-card {
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .watch-card ul {
+      display: grid;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+      color: var(--color-text-muted);
+      padding-left: 1rem;
+    }
+
+    .watch-card li {
+      max-width: 50ch;
+    }
+
+    .cert-card {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .cert-badge {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 1rem;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--color-primary-highlight), var(--color-blue-highlight));
+      color: var(--color-primary);
+      border: 1px solid var(--color-border);
+    }
+
+    .contact-card {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--color-text-muted);
+      word-break: break-word;
+    }
+
+    .contact-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.9rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface-offset) 90%, transparent);
+      color: var(--color-primary);
+      flex: 0 0 auto;
+    }
+
+    .form-shell {
+      padding: var(--space-6);
+    }
+
+    .form-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .field {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    label {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface-offset) 88%, transparent);
+      color: var(--color-text);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1rem;
+      min-height: 52px;
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--color-text-faint);
+    }
+
+    .field-error {
+      font-size: var(--text-xs);
+      color: var(--color-orange);
+      min-height: 1.2em;
+    }
+
+    .form-status {
+      font-size: var(--text-sm);
+      color: var(--color-primary);
+      min-height: 1.4em;
+    }
+
+    .footer {
+      padding-block: var(--space-10);
+      border-top: 1px solid var(--color-divider);
+      background: color-mix(in srgb, var(--color-surface-offset) 80%, transparent);
+    }
+
+    .footer-grid {
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr auto;
+      }
+    }
+
+    .footer p {
+      font-size: var(--text-sm);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      justify-content: flex-start;
+    }
+
+    .footer-links a {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 90;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--color-surface);
+      color: var(--color-primary);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity var(--transition-interactive), transform var(--transition-interactive);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      background: rgba(2, 6, 23, 0.72);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-interactive);
+    }
+
+    .modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-dialog {
+      width: min(100%, 920px);
+      max-height: 90dvh;
+      overflow: auto;
+      border-radius: 1.5rem;
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border-bottom: 1px solid var(--color-divider);
+      backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+    }
+
+    .modal-close {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface-offset);
+      color: var(--color-text);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .modal-body {
+      padding: var(--space-6);
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .case-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    @media (min-width: 900px) {
+      .case-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .case-box {
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      background: color-mix(in srgb, var(--color-surface-offset) 82%, transparent);
+    }
+
+    .case-box h4 {
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-3);
+      color: var(--color-primary);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .case-box p,
+    .case-box ul {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .case-box ul {
+      display: grid;
+      gap: var(--space-2);
+      padding-left: 1rem;
+    }
+
+    .case-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .metric {
+      flex: 1 1 160px;
+      padding: var(--space-4);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      background: linear-gradient(180deg, var(--color-primary-highlight), transparent);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: var(--text-xl);
+      color: var(--color-text);
+    }
+
+    .metric span {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: auto -12% -15% auto;
+      width: 16rem;
+      height: 16rem;
+      background: radial-gradient(circle, rgba(29, 211, 176, 0.18), transparent 70%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    @media (max-width: 899px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-head {
+        margin-bottom: var(--space-8);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 1.2rem, var(--content-default));
+      }
+
+      .info-card,
+      .tech-card,
+      .watch-card,
+      .cert-card,
+      .contact-card,
+      .timeline-card,
+      .project-card,
+      .form-shell {
+        padding: var(--space-5);
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy p {
+        font-size: var(--text-base);
+      }
+
+      .timeline::before {
+        left: 0.65rem;
+      }
+
+      .timeline-card {
+        margin-left: 1rem;
+        padding-left: calc(var(--space-5) + 0.85rem);
+      }
+
+      .timeline-card::before {
+        left: -0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+    <div class="container nav-wrap">
+      <a href="#hero" class="brand" aria-label="Retour en haut">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 8.5 12 4l8 4.5v7L12 20l-8-4.5v-7Z"/>
+            <path d="M8.5 10.5 12 8l3.5 2.5V14L12 16l-3.5-2V10.5Z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Portfolio SISR</strong>
+          <span>Infrastructure / Réseau / Cyber</span>
+        </span>
+      </a>
+
+      <nav aria-label="Navigation principale">
+        <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navMenu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="#about">Présentation</a>
+          <a href="#education">Formation</a>
+          <a href="#skills">Compétences</a>
+          <a href="#projects">Projets</a>
+          <a href="#experience">Expériences</a>
+          <a href="#watch">Veille</a>
+          <a href="#certifications">CV</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" data-theme-toggle aria-label="Activer le mode clair">
+          <svg id="themeIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero section" id="hero">
+      <div class="container hero-layout">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">BTS SIO SISR • Portfolio professionnel</span>
+          <div class="kicker">Administration système • Réseau • Cybersécurité • Monitoring</div>
+          <h1>
+            Étudiant BTS SIO SISR,<br>
+            je construis des environnements <span class="hero-title-accent">stables, sécurisés et supervisés</span>
+          </h1>
+          <p>
+            Je conçois et administre des infrastructures techniques cohérentes : services réseau, virtualisation,
+            supervision, sécurité et documentation. Mon objectif est de transformer des besoins opérationnels en
+            solutions fiables, lisibles et maintenables.
+          </p>
+
+          <div class="hero-meta">
+            <div class="meta-pill"><span class="dot"></span>Disponible pour CDI</div>
+            <div class="meta-pill">Montpellier / Occitanie</div>
+            <div class="meta-pill">Profil SISR orienté infrastructure</div>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#projects">Voir mes projets</a>
+            <a class="btn btn-secondary" href="#contact">Me contacter</a>
+            <a class="btn btn-ghost" href="#certifications">CV</a>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal">
+          <div class="console" aria-label="Aperçu technique du profil">
+            <div class="console-topbar" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="console-body">
+              <div class="console-line">
+                <span class="prompt">$</span>
+                <span class="text">profile.load --track <strong>sisr</strong></span>
+              </div>
+              <div class="console-line">
+                <span class="prompt">></span>
+                <span class="text">Compétences principales : réseau, systèmes Linux, virtualisation, supervision.</span>
+              </div>
+              <div class="console-line">
+                <span class="prompt">></span>
+                <span class="text" id="typingLine">Initialisation de l’environnement technique...</span>
+              </div>
+              <div class="console-line">
+                <span class="prompt">></span>
+                <span class="text">Approche : rigueur, documentation, résolution de problèmes, amélioration continue.</span>
+              </div>
+
+              <div class="stats-grid">
+                <article class="stat-card">
+                  <strong data-counter="8">0</strong>
+                  <span>Technologies maîtrisées</span>
+                </article>
+                <article class="stat-card">
+                  <strong data-counter="4">0</strong>
+                  <span>Domaines techniques clés</span>
+                </article>
+                <article class="stat-card">
+                  <strong data-counter="3">0</strong>
+                  <span>Projets détaillés</span>
+                </article>
+                <article class="stat-card">
+                  <strong data-counter="1">0</strong>
+                  <span>Expérience de stage structurante</span>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="hero-glow" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Présentation</span>
+          <h2>Un profil orienté infrastructure, fiabilité et méthode</h2>
+          <p>
+            Mon parcours BTS SIO SISR m’a permis d’aborder des problématiques concrètes de réseau, d’administration
+            système, de sécurité et de supervision. J’aime travailler sur des environnements techniques cohérents,
+            où chaque service est configuré, compris, testé et documenté proprement.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="info-card reveal">
+            <div class="profile-stack">
+              <h3>Positionnement professionnel</h3>
+              <p>
+                Je me spécialise dans les environnements IT orientés exploitation et infrastructure : déploiement de
+                services, segmentation réseau, configuration système, outils de supervision et sécurisation des accès.
+              </p>
+
+              <ul class="bullet-list" role="list">
+                <li>Approche concrète, structurée et orientée résolution de problèmes.</li>
+                <li>Capacité à intervenir sur des architectures techniques hybrides : réseau, systèmes, virtualisation, sécurité.</li>
+                <li>Volonté de produire un résultat propre, crédible et exploitable dans un contexte professionnel.</li>
+                <li>Sens de la documentation, de la maintenance et de la cohérence technique globale.</li>
+              </ul>
+            </div>
+          </article>
+
+          <aside class="mini-panels reveal">
+            <article class="mini-card">
+              <h3>Objectif</h3>
+              <p>Évoluer vers des fonctions d’administrateur systèmes et réseaux, technicien infrastructure ou profil junior cybersécurité orienté exploitation.</p>
+            </article>
+            <article class="mini-card">
+              <h3>Valeur ajoutée</h3>
+              <p>Comprendre les fondations techniques, relier les couches de l’infrastructure et fournir une solution fiable plutôt qu’un simple assemblage d’outils.</p>
+            </article>
+            <article class="mini-card">
+              <h3>Méthode</h3>
+              <p>Analyser, concevoir, tester, documenter et améliorer. Une démarche simple, mais essentielle dans un environnement IT sérieux.</p>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Formation</span>
+          <h2>Un parcours centré sur l’exploitation et les services d’infrastructure</h2>
+          <p>
+            La spécialisation SISR m’a permis de développer une vision globale du fonctionnement d’un SI : services,
+            sécurité, réseau, support technique, administration et supervision.
+          </p>
+        </div>
+
+        <div class="timeline reveal">
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <span class="date-chip">2024 — 2026</span>
+              <span class="tag">BTS SIO SISR</span>
+            </div>
+            <h3>Brevet de Technicien Supérieur — Services Informatiques aux Organisations</h3>
+            <p>
+              Formation orientée administration des systèmes et des réseaux : gestion d’infrastructure, services
+              réseau, sécurisation, virtualisation, support technique, documentation et conduite de projets techniques.
+            </p>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <span class="date-chip">Compétences développées</span>
+              <span class="tag">Réseau</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Windows Server</span>
+            </div>
+            <h3>Axes de travail privilégiés</h3>
+            <p>
+              Configuration de services d’infrastructure, topologies réseau, segmentation, DNS/DHCP, supervision,
+              authentification, durcissement de base et maintenance d’environnements techniques.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Compétences techniques</span>
+          <h2>Compétences structurées par domaine</h2>
+          <p>
+            Les niveaux ci-dessous reflètent un positionnement étudiant avancé / junior technique, avec une base
+            solide en administration, réseau et supervision.
+          </p>
+        </div>
+
+        <div class="skill-layout">
+          <article class="tech-card reveal">
+            <h3>Systèmes et exploitation</h3>
+            <div class="skills-list">
+              <div class="skill-row">
+                <div class="skill-label"><span>Linux / Administration système</span><span>85%</span></div>
+                <div class="skill-bar"><span data-width="85%"></span></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label"><span>Windows Server / Services</span><span>75%</span></div>
+                <div class="skill-bar"><span data-width="75%"></span></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label"><span>Virtualisation / Proxmox / VM</span><span>82%</span></div>
+                <div class="skill-bar"><span data-width="82%"></span></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label"><span>Bash / Automatisation simple</span><span>70%</span></div>
+                <div class="skill-bar"><span data-width="70%"></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tech-card reveal">
+            <h3>Réseau et sécurité</h3>
+            <div class="skills-list">
+              <div class="skill-row">
+                <div class="skill-label"><span>Routage / VLAN / Architecture réseau</span><span>84%</span></div>
+                <div class="skill-bar"><span data-width="84%"></span></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label"><span>DNS / DHCP / Services IP</span><span>88%</span></div>
+                <div class="skill-bar"><span data-width="88%"></span></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label"><span>Supervision / Monitoring</span><span>80%</span></div>
+                <div class="skill-bar"><span data-width="80%"></span></div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label"><span>Cybersécurité / Hygiène / Durcissement</span><span>68%</span></div>
+                <div class="skill-bar"><span data-width="68%"></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tech-card reveal">
+            <h3>Technologies</h3>
+            <div class="badge-cloud">
+              <span class="badge">Linux</span>
+              <span class="badge">Windows Server</span>
+              <span class="badge">Proxmox</span>
+              <span class="badge">DNS</span>
+              <span class="badge">DHCP</span>
+              <span class="badge">Active Directory</span>
+              <span class="badge">Centreon</span>
+              <span class="badge">Wazuh</span>
+              <span class="badge">VLAN</span>
+              <span class="badge">OSPF</span>
+              <span class="badge">Firewall</span>
+              <span class="badge">SNMP</span>
+            </div>
+          </article>
+
+          <article class="tech-card reveal">
+            <h3>Compétences transverses</h3>
+            <ul class="bullet-list" role="list">
+              <li>Analyse d’incident et diagnostic méthodique.</li>
+              <li>Documentation technique structurée et lisible.</li>
+              <li>Capacité à vulgariser un problème à un public non technique.</li>
+              <li>Organisation, rigueur et logique d’amélioration continue.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Projets</span>
+          <h2>Études de cas techniques</h2>
+          <p>
+            Chaque projet est présenté comme une mini case study, avec son contexte, ses objectifs, les contraintes
+            rencontrées, les solutions retenues et les compétences mobilisées.
+          </p>
+        </div>
+
+        <div class="projects-toolbar reveal" role="tablist" aria-label="Filtres projets">
+          <button class="filter-btn active" data-filter="all">Tous</button>
+          <button class="filter-btn" data-filter="infra">Infrastructure</button>
+          <button class="filter-btn" data-filter="network">Réseau</button>
+          <button class="filter-btn" data-filter="security">Sécurité</button>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal" data-category="infra">
+            <div class="project-head">
+              <div>
+                <h3>Plateforme de virtualisation pédagogique</h3>
+                <p>Conception d’un environnement virtualisé pour héberger plusieurs services d’infrastructure de manière isolée et maintenable.</p>
+              </div>
+              <div class="project-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="4" y="5" width="16" height="5" rx="1.5"></rect>
+                  <rect x="4" y="14" width="16" height="5" rx="1.5"></rect>
+                </svg>
+              </div>
+            </div>
+            <div class="project-tech">
+              <span class="tiny-badge">Proxmox</span>
+              <span class="tiny-badge">Linux</span>
+              <span class="tiny-badge">Services réseau</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link" data-project="0">Voir l’étude de cas →</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-category="network">
+            <div class="project-head">
+              <div>
+                <h3>Architecture réseau segmentée et services IP</h3>
+                <p>Mise en place d’une architecture logique avec segmentation, adressage, routage et services essentiels pour un environnement multi-zones.</p>
+              </div>
+              <div class="project-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M8 7h8M8 17h8M12 7v10M5 12h14"></path>
+                  <circle cx="12" cy="12" r="9"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="project-tech">
+              <span class="tiny-badge">VLAN</span>
+              <span class="tiny-badge">DNS</span>
+              <span class="tiny-badge">DHCP</span>
+              <span class="tiny-badge">Routing</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link" data-project="1">Voir l’étude de cas →</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-category="security">
+            <div class="project-head">
+              <div>
+                <h3>Supervision et visibilité sécurité</h3>
+                <p>Déploiement d’outils de monitoring et d’observabilité afin de mieux suivre l’état des équipements, services et événements techniques.</p>
+              </div>
+              <div class="project-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3Z"></path>
+                  <path d="M9.5 12.5l1.8 1.8 3.2-4"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="project-tech">
+              <span class="tiny-badge">Centreon</span>
+              <span class="tiny-badge">Wazuh</span>
+              <span class="tiny-badge">SNMP</span>
+              <span class="tiny-badge">Logs</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link" data-project="2">Voir l’étude de cas →</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-category="infra">
+            <div class="project-head">
+              <div>
+                <h3>Documentation technique et support interne</h3>
+                <p>Structuration de procédures, consignes et éléments de support pour améliorer la lisibilité des interventions et la continuité technique.</p>
+              </div>
+              <div class="project-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M7 4h7l4 4v12H7z"></path>
+                  <path d="M14 4v4h4M10 13h5M10 17h5M10 9h2"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="project-tech">
+              <span class="tiny-badge">Documentation</span>
+              <span class="tiny-badge">Support</span>
+              <span class="tiny-badge">Méthode</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link" data-project="3">Voir l’étude de cas →</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Expériences</span>
+      <h2>Stage et interventions techniques</h2>
+      <p>
+        Les expériences de terrain sont essentielles pour relier les notions vues en formation aux contraintes
+        réelles d'une infrastructure opérationnelle.
+      </p>
+    </div>
+
+    <div class="timeline reveal">
+      <article class="timeline-card">
+        <div class="timeline-top">
+          <span class="date-chip">6 semaines</span>
+          <span class="tag">Mairie de Pérols</span>
+          <span class="tag">Stage</span>
+        </div>
+        <h3>Interventions sur des services et environnements internes</h3>
+        <p>
+          Participation à des tâches liées au support, à la configuration d'applications internes, à
+          l'administration technique et à l'environnement réseau. Cette expérience m'a permis de mieux comprendre
+          les attentes de fiabilité, de continuité de service et de lisibilité dans un contexte réel.
+        </p>
+      </article>
+
+      <article class="timeline-card">
+        <div class="timeline-top">
+          <span class="date-chip">1 mois</span>
+          <span class="tag">Monsieur Meubles</span>
+          <span class="tag">Stage</span>
+        </div>
+        <h3>Support informatique en environnement commercial</h3>
+        <p>
+          Stage réalisé au sein de l'enseigne Monsieur Meubles, centré sur le support utilisateur,
+          la maintenance du parc informatique et les interventions techniques du quotidien. Cette
+          expérience m'a permis d'intervenir rapidement dans un contexte professionnel où la
+          continuité de service est une priorité.
+        </p>
+      </article>
+
+      <article class="timeline-card">
+        <div class="timeline-top">
+          <span class="date-chip">Apprentissages clés</span>
+          <span class="tag">Méthode</span>
+          <span class="tag">Contexte réel</span>
+        </div>
+        <h3>Ce que cette expérience a renforcé</h3>
+        <p>
+          Le sens de la responsabilité technique, l'importance de la documentation, la précision dans les
+          modifications et la nécessité d'un raisonnement rigoureux lorsqu'un service doit rester disponible.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+    <section class="section" id="watch">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Veille technologique</span>
+          <h2>Surveillance des évolutions techniques</h2>
+          <p>
+            La veille me permet de rester aligné avec les pratiques d’infrastructure, les évolutions sécurité et les
+            outils de supervision réellement utilisés dans les environnements IT modernes.
+          </p>
+        </div>
+
+        <div class="watch-grid">
+          <article class="watch-card reveal">
+            <h3>Cybersécurité opérationnelle</h3>
+            <ul>
+              <li>Actualités liées aux vulnérabilités, à l’hygiène système et aux méthodes de durcissement.</li>
+              <li>Évolution des outils SIEM, EDR, XDR et détection d’anomalies.</li>
+              <li>Bonnes pratiques de segmentation, journalisation et exposition minimale.</li>
+            </ul>
+          </article>
+
+          <article class="watch-card reveal">
+            <h3>Infrastructure et réseau</h3>
+            <ul>
+              <li>Architectures réseau modernes, redondance, haute disponibilité et segmentation.</li>
+              <li>Virtualisation, orchestration légère, supervision et qualité de service.</li>
+              <li>Montée en compétence sur les équipements, OS réseau et méthodes d’administration.</li>
+            </ul>
+          </article>
+
+          <article class="watch-card reveal">
+            <h3>Observabilité et monitoring</h3>
+            <ul>
+              <li>Suivi des métriques critiques, disponibilité des services et qualité de supervision.</li>
+              <li>Amélioration de la lecture des événements techniques et des alertes pertinentes.</li>
+              <li>Recherche de tableaux de bord plus lisibles et réellement utiles à l’exploitation.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="certifications">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">CV</span>
+      <h2>Mon CV</h2>
+      <p>
+        Retrouvez ici mon CV au format PDF, résumant mon parcours, mes compétences
+        techniques et mes expériences professionnelles.
+      </p>
+    </div>
+
+    <article class="cert-card reveal">
+      <div class="cert-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 3h8l5 5v13H7z"></path>
+          <path d="M15 3v5h5M10 13h6M10 17h6M10 9h2"></path>
+        </svg>
+      </div>
+      <h3>CV professionnel — BTS SIO SISR</h3>
+      <p>Mon CV détaille mon parcours de formation, mes expériences de stage, mes compétences techniques en infrastructure, réseau et cybersécurité.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">Télécharger mon CV</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Échanger autour d’un poste, d’une alternance ou d’un projet</h2>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card reveal">
+            <h3>Coordonnées</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16v16H4z"></path>
+                    <path d="m4 7 8 6 8-6"></path>
+                  </svg>
+                </span>
+                <span>jimyoudry@orange.fr</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72l.39 2.57a2 2 0 0 1-.57 1.73L7.1 9.91a16 16 0 0 0 7 7l1.89-1.83a2 2 0 0 1 1.73-.57l2.57.39A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </span>
+                <span>+33 6 45 43 27 17</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10Z"></path>
+                    <circle cx="12" cy="11" r="2"></circle>
+                  </svg>
+                </span>
+                <span>Pérols, Occitanie</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="contact-card form-shell reveal" style="grid-column: span 2;">
+            <h3>Formulaire de contact</h3>
+            <form id="contactForm" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Nom</label>
+                  <input id="name" name="name" type="text" placeholder="Votre nom" />
+                  <div class="field-error" id="error-name"></div>
+                </div>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="nom@entreprise.com" />
+                  <div class="field-error" id="error-email"></div>
+                </div>
+
+                <div class="field">
+                  <label for="subject">Sujet</label>
+                  <input id="subject" name="subject" type="text" placeholder="Objet de votre message" />
+                  <div class="field-error" id="error-subject"></div>
+                </div>
+
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="Décrivez votre besoin, votre proposition ou votre demande de contact."></textarea>
+                  <div class="field-error" id="error-message"></div>
+                </div>
+
+                <div class="form-status" id="formStatus" aria-live="polite"></div>
+
+                <div class="btn-row">
+                  <button class="btn btn-primary" type="submit">Envoyer le message</button>
+                </div>
+              </div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <p><strong>Portfolio BTS SIO SISR</strong> — Un site pensé pour présenter un profil technique sérieux, structuré et crédible.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about">Présentation</a>
+        <a href="#projects">Projets</a>
+        <a href="#experience">Expériences</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="m18 15-6-6-6 6"></path>
+    </svg>
+  </button>
+
+  <div class="modal" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <div class="kicker">Case study</div>
+          <h3 id="modalTitle">Projet</h3>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="Fermer la fenêtre">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const html = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+      function setTheme(nextTheme) {
+        theme = nextTheme;
+        html.setAttribute('data-theme', theme);
+        const isDark = theme === 'dark';
+        themeToggle.setAttribute('aria-label', isDark ? 'Activer le mode clair' : 'Activer le mode sombre');
+        themeIcon.innerHTML = isDark
+          ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>'
+          : '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+      }
+
+      setTheme(theme);
+      themeToggle.addEventListener('click', () => setTheme(theme === 'dark' ? 'light' : 'dark'));
+
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+
+      navToggle.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      const sections = [...document.querySelectorAll('main section[id]')];
+      const navLinks = [...document.querySelectorAll('.nav-menu a')];
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            const active = link.getAttribute('href') === '#' + id;
+            link.classList.toggle('active', active);
+          });
+        });
+      }, { threshold: 0.35 });
+
+      sections.forEach(section => sectionObserver.observe(section));
+
+      const revealItems = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+
+      revealItems.forEach(item => revealObserver.observe(item));
+
+      const progressBar = document.getElementById('progressBar');
+      const backToTop = document.getElementById('backToTop');
+
+      function updateScrollUI() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = progress + '%';
+        backToTop.classList.toggle('visible', scrollTop > 600);
+      }
+
+      window.addEventListener('scroll', updateScrollUI, { passive: true });
+      updateScrollUI();
+
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      const typingLine = document.getElementById('typingLine');
+      const typingText = 'Initialisation de l’environnement technique... services prêts, supervision active, accès contrôlés.';
+      let typingIndex = 0;
+
+      function typeHero() {
+        if (!typingLine) return;
+        typingLine.textContent = '';
+        typingIndex = 0;
+        const timer = setInterval(() => {
+          typingLine.textContent += typingText.charAt(typingIndex);
+          typingIndex++;
+          if (typingIndex >= typingText.length) clearInterval(timer);
+        }, 28);
+      }
+
+      typeHero();
+
+      const counters = document.querySelectorAll('[data-counter]');
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = Number(el.dataset.counter);
+          let current = 0;
+          const step = Math.max(1, Math.ceil(target / 24));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = current;
+          }, 40);
+          counterObserver.unobserve(el);
+        });
+      }, { threshold: 0.7 });
+
+      counters.forEach(counter => counterObserver.observe(counter));
+
+      const skillBars = document.querySelectorAll('.skill-bar span');
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const bar = entry.target;
+          bar.style.width = bar.dataset.width;
+          skillObserver.unobserve(bar);
+        });
+      }, { threshold: 0.5 });
+
+      skillBars.forEach(bar => skillObserver.observe(bar));
+
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          const filter = button.dataset.filter;
+
+          projectCards.forEach(card => {
+            const match = filter === 'all' || card.dataset.category === filter;
+            card.classList.toggle('hide', !match);
+          });
+        });
+      });
+
+      const projectData = [
+        {
+          title: 'Plateforme de virtualisation pédagogique',
+          context: 'Créer un environnement centralisé pour héberger plusieurs services d’infrastructure de manière compartimentée et réutilisable.',
+          objectives: 'Disposer d’un socle de tests fiable pour déployer des VM, séparer les rôles techniques et faciliter les manipulations réseau et système.',
+          stack: 'Proxmox, Linux, services IP, VM de tests, segmentation logique.',
+          tasks: [
+            'Déploiement de l’hyperviseur et structuration de l’environnement.',
+            'Création des VM selon les rôles techniques.',
+            'Configuration des services de base et validation des échanges.',
+            'Documentation de l’architecture et des procédures.'
+          ],
+          difficulties: 'Équilibrer simplicité d’exploitation, isolation des services et cohérence générale de l’environnement.',
+          solutions: 'Standardisation des rôles, logique de nommage claire, séparation des usages et validation progressive par tests.',
+          results: [
+            { value: '3+', label: 'services déployés' },
+            { value: '100%', label: 'environnement documenté' },
+            { value: '1 socle', label: 'réutilisable pour d’autres projets' }
+          ],
+          skills: ['Virtualisation', 'Linux', 'Architecture', 'Documentation']
+        },
+        {
+          title: 'Architecture réseau segmentée et services IP',
+          context: 'Structurer un réseau en plusieurs zones pour mieux gérer les flux, les services et la sécurité logique.',
+          objectives: 'Créer un réseau lisible, segmenté, administrable et compatible avec plusieurs besoins métier ou pédagogiques.',
+          stack: 'VLAN, adressage IP, routage, DNS, DHCP, équipements réseau.',
+          tasks: [
+            'Définition du plan d’adressage.',
+            'Création de segments logiques selon les usages.',
+            'Mise en place des services IP indispensables.',
+            'Contrôle des flux et validation du fonctionnement.'
+          ],
+          difficulties: 'Maintenir une architecture simple à comprendre tout en conservant une séparation efficace entre les zones.',
+          solutions: 'Segmentation raisonnée, nommage standardisé, schémas clairs et contrôles de bout en bout.',
+          results: [
+            { value: '4', label: 'zones logiques cohérentes' },
+            { value: '1', label: 'plan d’adressage centralisé' },
+            { value: '0', label: 'ambiguïté documentaire majeure' }
+          ],
+          skills: ['Réseau', 'DNS/DHCP', 'Routage', 'Méthode']
+        },
+        {
+          title: 'Supervision et visibilité sécurité',
+          context: 'Améliorer la compréhension de l’état réel des équipements et services à travers des outils de monitoring et d’analyse.',
+          objectives: 'Surveiller les ressources, détecter les anomalies utiles et disposer d’une lecture plus claire de l’activité technique.',
+          stack: 'Centreon, Wazuh, SNMP, collecte de logs, tableaux de bord.',
+          tasks: [
+            'Sélection des indicateurs pertinents.',
+            'Ajout d’hôtes, services et métriques de supervision.',
+            'Configuration de tableaux de bord et alertes.',
+            'Amélioration de la lisibilité des événements.'
+          ],
+          difficulties: 'Éviter le bruit technique tout en conservant une supervision suffisamment riche pour être exploitable.',
+          solutions: 'Choix d’indicateurs ciblés, hiérarchisation des alertes et priorisation des événements réellement utiles.',
+          results: [
+            { value: '24/7', label: 'vision de disponibilité' },
+            { value: 'mieux', label: 'lecture des incidents' },
+            { value: 'plus', label: 'de réactivité technique' }
+          ],
+          skills: ['Monitoring', 'Logs', 'Visibilité', 'Sécurité']
+        },
+        {
+          title: 'Documentation technique et support interne',
+          context: 'Rendre les opérations plus lisibles et faciliter la continuité d’activité grâce à une documentation utile, concise et exploitable.',
+          objectives: 'Créer des supports qui permettent à d’autres intervenants de comprendre plus vite un service, une procédure ou un environnement.',
+          stack: 'Procédures, fiches techniques, logique de support, documentation structurée.',
+          tasks: [
+            'Rédaction de procédures simples et actionnables.',
+            'Structuration des informations utiles à l’exploitation.',
+            'Clarification des étapes et des dépendances.',
+            'Formalisation des interventions récurrentes.'
+          ],
+          difficulties: 'Produire une documentation concise sans perdre les détails nécessaires à la compréhension technique.',
+          solutions: 'Découpage en étapes, vocabulaire simple, logique de lecture rapide et supports homogènes.',
+          results: [
+            { value: 'gain', label: 'de temps en support' },
+            { value: 'plus', label: 'de clarté technique' },
+            { value: 'meilleure', label: 'transmission de l’information' }
+          ],
+          skills: ['Documentation', 'Support', 'Structuration', 'Communication']
+        }
+      ];
+
+      const modal = document.getElementById('projectModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      const modalClose = document.getElementById('modalClose');
+      const projectLinks = document.querySelectorAll('[data-project]');
+
+      function renderProjectModal(project) {
+        modalTitle.textContent = project.title;
+        modalBody.innerHTML = `
+          <div class="case-grid">
+            <article class="case-box">
+              <h4>Contexte</h4>
+              <p>${project.context}</p>
+            </article>
+            <article class="case-box">
+              <h4>Objectifs</h4>
+              <p>${project.objectives}</p>
+            </article>
+            <article class="case-box">
+              <h4>Environnement technique</h4>
+              <p>${project.stack}</p>
+            </article>
+            <article class="case-box">
+              <h4>Compétences mobilisées</h4>
+              <p>${project.skills.join(', ')}</p>
+            </article>
+            <article class="case-box">
+              <h4>Tâches réalisées</h4>
+              <ul>${project.tasks.map(item => `<li>${item}</li>`).join('')}</ul>
+            </article>
+            <article class="case-box">
+              <h4>Difficultés & solutions</h4>
+              <p><strong>Difficulté :</strong> ${project.difficulties}</p>
+              <p style="margin-top: .75rem;"><strong>Solution :</strong> ${project.solutions}</p>
+            </article>
+          </div>
+          <div>
+            <h4 style="margin-bottom: 1rem;" class="kicker">Résultats</h4>
+            <div class="case-results">
+              ${project.results.map(result => `
+                <div class="metric">
+                  <strong>${result.value}</strong>
+                  <span>${result.label}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      function openModal(index) {
+        renderProjectModal(projectData[index]);
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        modalClose.focus();
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      projectLinks.forEach(link => {
+        link.addEventListener('click', () => openModal(Number(link.dataset.project)));
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+
+      const contactForm = document.getElementById('contactForm');
+      const formStatus = document.getElementById('formStatus');
+
+      function setError(id, message) {
+        const field = document.getElementById('error-' + id);
+        if (field) field.textContent = message;
+      }
+
+      function clearErrors() {
+        ['name', 'email', 'subject', 'message'].forEach(id => setError(id, ''));
+        formStatus.textContent = '';
+      }
+
+      function validateEmail(email) {
+        return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+      }
+
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        const formData = new FormData(contactForm);
+        const name = formData.get('name').toString().trim();
+        const email = formData.get('email').toString().trim();
+        const subject = formData.get('subject').toString().trim();
+        const message = formData.get('message').toString().trim();
+
+        let valid = true;
+
+        if (name.length < 2) {
+          setError('name', 'Veuillez saisir un nom valide.');
+          valid = false;
+        }
+        if (!validateEmail(email)) {
+          setError('email', 'Veuillez saisir une adresse email valide.');
+          valid = false;
+        }
+        if (subject.length < 3) {
+          setError('subject', 'Veuillez préciser un sujet.');
+          valid = false;
+        }
+        if (message.length < 12) {
+          setError('message', 'Votre message doit contenir au moins 12 caractères.');
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        formStatus.textContent = 'Message prêt à être envoyé. Reliez ensuite ce formulaire à Formspree, EmailJS ou à votre backend.';
+        contactForm.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
